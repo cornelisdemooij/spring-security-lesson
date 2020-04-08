@@ -6,7 +6,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -22,18 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // Set your configuration on the auth object:
         auth.jdbcAuthentication()
-            .dataSource(dataSource)
-            .withDefaultSchema()
-            .withUser(
-                    User.withUsername("user")
-                    .password("pass")
-                    .roles("USER")
-            )
-            .withUser(
-                    User.withUsername("admin")
-                    .password("pass")
-                    .roles("ADMIN")
-            );
+            .dataSource(dataSource);
     }
 
     @Override
