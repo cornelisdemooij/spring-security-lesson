@@ -5,7 +5,6 @@ import com.cornelisdemooij.springsecuritylesson.models.AuthenticationResponse;
 import com.cornelisdemooij.springsecuritylesson.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -25,7 +24,7 @@ public class HomeResource {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    private JwtUtil jwtTokenUtil;
+    private JwtUtil jwtUtil;
 
     private String links = "<a href='/'>Home</a> " +
             "<a href='/user'>User</a> " +
@@ -63,15 +62,7 @@ public class HomeResource {
         }
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
-        //System.out.println(jwt);
+        final String jwt = jwtUtil.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
-
-        /*
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.add(HttpHeaders.SET_COOKIE, jwt);
-        AuthenticationResponse response = new AuthenticationResponse(jwt);
-        return ResponseEntity.ok(response).getHeaders().add("Authorization", "Bearer ".concat(jwt));
-         */
     }
 }
