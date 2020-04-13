@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class HomeResource {
 
-    @Autowired
+    /*@Autowired
     private AuthenticationManager authenticationManager;
 
     @Qualifier("userDetailsServiceBean")
@@ -24,7 +24,7 @@ public class HomeResource {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    private JwtUtil jwtUtil;
+    private JwtUtil jwtUtil;*/
 
     private String links = "<a href='/'>Home</a> " +
             "<a href='/user'>User</a> " +
@@ -46,7 +46,7 @@ public class HomeResource {
         return ("<h1>Welcome Admin</h1>" + links);
     }
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
             @RequestBody AuthenticationRequest authenticationRequest
     ) throws Exception {
@@ -64,5 +64,5 @@ public class HomeResource {
                 .loadUserByUsername(authenticationRequest.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
-    }
+    }*/
 }
