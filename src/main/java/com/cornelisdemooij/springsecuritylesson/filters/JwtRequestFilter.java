@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -43,11 +44,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             username = jwtUtil.extractUsername(jwt);
         } else {    // If there's no Authorization header, look in the cookies instead.
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
-                String name = cookie.getName();
-                if (name.equals("Authorization")) {
-                    jwt = cookie.getValue();
-                    username = jwtUtil.extractUsername(jwt);
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    String name = cookie.getName();
+                    if (name.equals("Authorization")) {
+                        jwt = cookie.getValue();
+                        username = jwtUtil.extractUsername(jwt);
+                    }
                 }
             }
         }
@@ -66,3 +69,4 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 }
+*/
